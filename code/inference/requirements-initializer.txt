@@ -1,0 +1,12 @@
+# Initializer only; Python 3.11 recommended. Install hardware-compatible CUDA
+# PyTorch first (see README-curated-batch.zh-TW.md). No Explorer/video packages.
+# Source-compatible baseline, NOT a GPU-validated environment lock.
+diffusers==0.33.1
+transformers==4.51.3
+accelerate==1.6.0
+numpy==1.26.4
+Pillow==11.3.0
+sentencepiece==0.2.0
+protobuf==5.29.4
+safetensors==0.5.3
+huggingface-hub==0.30.2
