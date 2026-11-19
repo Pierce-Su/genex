@@ -48,7 +48,7 @@ def inventory(root, expected, keys=None):
 
 def run(root, output, expected=140, keys=None, size=512, exit_marker=None):
     root = Path(root).resolve(strict=True)
-    output = Path(output).absolute()
+    output = Path(output).resolve()
     if output == root or root in output.parents:
         raise ValueError('Derived output must be outside generation tree')
     if exit_marker is not None and Path(exit_marker).read_text().strip() != '0':

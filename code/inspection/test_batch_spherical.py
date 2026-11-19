@@ -18,6 +18,7 @@ class BatchTests(unittest.TestCase):
         for name, size in [('rawERP.png', (2048, 1024)), ('front.png', (512, 512)), ('source.jpg', (80, 60))]:
             Image.new('RGB', size, 'green').save(self.sample / name)
         self.m = {'identity': {'key': 'photorealistic_0000', 'source_relative': 'photo/a.jpg'}, 'artifacts': {p.name: digest(p) for p in self.sample.iterdir()}}
+        self.m['identity']['source_sha256'] = self.m['artifacts']['source.jpg']
         (self.sample / 'manifest.json').write_text(json.dumps(self.m))
 
     def tearDown(self):

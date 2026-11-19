@@ -29,6 +29,11 @@ class GeometryTests(unittest.TestCase):
         for yaw,pitch,expected in [(0,0,[127.5,127.5,255]),(90,0,[255,127.5,127.5]),(180,0,[127.5,127.5,0]),(0,90,[127.5,255,127.5]),(0,-90,[127.5,0,127.5])]:
             np.testing.assert_allclose(perspective(erp_array(),yaw,pitch,90,1)[0,0],expected,atol=2)
 
+    def test_yaw_periodicity(self):
+        for yaw in (0, 90, 180, 270, 315):
+            np.testing.assert_allclose(perspective(erp_array(), yaw, 0, 90, 33),
+                                       perspective(erp_array(), yaw + 360, 0, 90, 33), atol=1e-10)
+
     def test_continuous_wrap_view(self):
         view=perspective(erp_array(),180,0,90,64)
         self.assertTrue(np.isfinite(view).all())
